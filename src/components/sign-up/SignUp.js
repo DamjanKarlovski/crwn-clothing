@@ -32,7 +32,7 @@ return;
             displayName: "",
             email: "",
             password: "",
-            confirmPassoword: ""
+            confirmPassword: ""
          })
       }
       catch(error) {
