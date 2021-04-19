@@ -5,8 +5,8 @@ import HomePage from './pages/homepage/HomePage';
 import ShopPage from './pages/shop/ShopPage';
 import Header from './components/header/Header';
 import SignInSignUpPage from './pages/sign-in-and-sign-up/SignInSignUpPage'
-import { auth } from './firebase/firebase.utils'
-import { render } from '@testing-library/react';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils'
+
 
 class App extends React.Component{
 constructor(){
@@ -21,9 +21,27 @@ constructor(){
 unsubscribeFromAuth = null
 
 componentDidMount() {
-  this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-    this.setState({currentUser: user});
-    console.log("this is THE USER" , user);
+  this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    if (userAuth) {
+      const userRef = await createUserProfileDocument(userAuth);
+
+      userRef.onSnapshot(snapShot => {
+        this.setState({
+          currentUser: {
+            id: snapShot.id,
+            ...snapShot.data()
+          }
+        })
+        console.log("STATE", this.state);
+        console.log('SNAPSHOT', snapShot.data());
+        console.log('THIS IS THE CURRENT USER' ,this.state.currentUser);
+      })
+    }
+    else {
+      this.setState({currentUser: userAuth})
+      console.log("The user is logged out", this.state.currentUser);
+    }
+   
   })
 }
 
