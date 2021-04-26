@@ -6,17 +6,20 @@
     line-height: 50px;
     padding: 0 35px 0 35px;
     font-size: 15px;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
     text-transform: uppercase;
     font-family: 'Open Sans Condensed';
     font-weight: bolder;
     border: none;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
   
     &:hover {
-      background-color: white;
-      color: black;
+      background-color: black;
+      color: white;
       border: 1px solid black;
     }
     &.google-sign-in {
@@ -24,6 +27,17 @@
       color: white;
       &:hover {
         background-color: #357ae8;
+        border: none;
+      }
+    }
+    &.inverted{
+      background-color: black;
+      color: white;
+      border: 1px solid black;
+
+      &:hover{
+        background-color: white;
+        color: black;
         border: none;
       }
     }
