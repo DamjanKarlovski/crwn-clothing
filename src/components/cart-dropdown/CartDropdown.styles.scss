@@ -16,6 +16,15 @@
       display: flex;
       flex-direction: column;
       overflow-y: scroll;
+      .empty-message{
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 26px;
+        height: 100%;
+        overflow-y: hidden;
+      }
     }
   
     button {
